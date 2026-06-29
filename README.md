@@ -16,20 +16,21 @@ I designed and built an AI content operations pipeline that:
 - Applies brand guidance through retrieval-augmented context
 - Enforces deterministic prompt constraints and formatting rules
 - Generates platform-specific content variations
-- Delivers outputs to a specified Google Docs review sandbox
+- Delivers draft outputs to a specified Google Docs review sandbox
 - Routes every draft through a human approval checkpoint with notification alerts
 
 ## 2. System Architecture
 
-The system is designed as a 3-stage pipeline with a human-in-the-loop safety layer:
+The workflow is organized into four stages:
 
-[1. INGESTION] → [2. TRANSFORMATION] → [3. DEPLOYMENT]
-                         ↓
-                Human Review Sandbox
+- Ingestion — Raw text or document input is received.
+- Transformation — Rule-based processing and LLM-driven content generation produce structured, platform-specific outputs.
+- Draft Delivery — Draft content is written to Google Docs and an automated notification is sent to the editor.
+- Human Review — The generated content is reviewed, verified, and approved before publication.
 
-- Ingestion: raw text or document input
-- Transformation: rule-based + LLM-driven formatting and generation
-- Deployment: structured output delivery to Google Docs + notifications
+<img src="screenshots/content-agent-diagram.png" width="61%" alt="AI Content Operations Pipeline diagram" />
+<br />
+<i><sub>Figure 1: AI Content Operations Pipeline diagram.</i></sub>
 
 ### 2.1 Data Flow Breakdown
 
@@ -71,10 +72,6 @@ Final outputs are written to a Google Docs sandbox folder and dynamically named 
 6. Operational Logging  
 An automated email notification logs file name, timestamp, execution status, and output location.
 
-<img src="https://github.com/user-attachments/assets/2d4f867e-46a3-4435-beff-424cf1a0cca8" width="72%" alt="ALA Content Agent Tool and Knowledge Screenshot" />
-<br />
-<i><sub>Figure 1: Zapier Agent Configuration showing tool integrations, knowledge sources, and workflow setup.</i></sub>
-
 ## Section 2: Prompt Engineering & Constraint System
 
 ### 3. Core Prompt Architecture
@@ -86,7 +83,7 @@ Context Layer:
 2. Dynamic input payload
 3. Output formatting constraints
 
-<img width="100%" alt="ALA Content Agent Screenshot 2026-05" src="https://github.com/user-attachments/assets/cb400c27-1363-43b2-bcc1-b6495034688b" />
+<img width="59%" alt="Prompt Configuration showing constraints and rules" src="screenshots/content-prompt-constraints.png" />
 <br />
 <sub><i>Figure 2: Runtime prompt configuration showing formatting constraints, brand guidance, and output rules.</i></sub>
 
@@ -126,16 +123,12 @@ The system includes an intentional human-in-the-loop review stage before publish
 
 ### 4.1 Sandbox Review Layer
 
-Instead of publishing directly to social platforms, outputs are routed to a Google Docs sandbox environment, and notifications are sent for human review.
+Instead of publishing directly to social platforms, outputs are routed to a Google Docs sandbox environment, and notification alerts are sent for human review upon completion.
 
 This provides:
 - Manual editorial review step
 - Safe validation before publishing
 - Separation between generation and deployment
-
-<img src="https://github.com/user-attachments/assets/aa95879e-fa47-424b-9673-c7fc11ed8150" width="100%" alt="Side-by-Side Validation Screenshot" />
-<br />
-<i><sub>Figure 3: Validation workflow comparing source material with generated draft before human approval.</i></sub>
 
 ### 4.2 Exception Handling System
 
@@ -162,6 +155,10 @@ This provides:
 
 ## Section 4: Integration Layer & Tooling
 
+<img src="screenshots/content-tools-config.png" width="60%" alt="Zapier Agent Configuration showing tool integrations" />
+<br />
+<i><sub>Figure 3: Zapier Agent Configuration showing tool integrations, knowledge sources, and workflow setup.</i></sub>
+
 ### 5. System Integrations
 
 The pipeline integrates:
@@ -186,6 +183,10 @@ This provides:
 - Lightweight system logging
 - Real-time execution visibility
 - Simple audit trail per run
+
+<img src="screenshots/content-agent-validation.png" width="100%" alt="Validation screenshot showing partial source material and generated output content" />
+<br />
+<i><sub>Figure 4: Validation workflow comparing a section of source material (left) with a section of generated draft output (right), before human review.</i></sub>
 
 ## Section 5: Scaling Roadmap
 
