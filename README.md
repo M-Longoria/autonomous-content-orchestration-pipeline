@@ -1,4 +1,4 @@
-# CASE STUDY: AI Content Operations Pipeline
+# CASE STUDY: AI Content Workflow Automation
 
 ## Section 1: Project Overview & Architecture
 
